@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Policy og maler – AI Guidebook</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .policy-container {
+      margin: 2rem 0;
+    }
+
+    .policy-category {
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .category-header {
+      background-color: var(--primary-light);
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .category-header:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .category-content {
+      display: none;
+      padding: 1rem;
+      background-color: var(--card-bg);
+    }
+
+    .category-content.active {
+      display: block;
+    }
+
+    .policy-item {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-left: 4px solid var(--primary-color);
+      background-color: rgba(74, 111, 165, 0.05);
+      border-radius: 4px;
+    }
+
+    .policy-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tip-icon {
+      transition: transform 0.3s;
+    }
+
+    .tip-icon.open {
+      transform: rotate(180deg);
+    }
+
+    .template-box {
+      background-color: var(--primary-light);
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      border-left: 4px solid var(--secondary-color);
+      position: relative;
+    }
+
+    .template-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .download-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .download-button:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .resource-list {
+      margin-top: 1rem;
+      padding-left: 1rem;
+    }
+
+    .resource-item {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .resource-link {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .resource-link:hover {
+      text-decoration: underline;
+    }
+
+    .checklist {
+      margin-top: 1rem;
+      padding-left: 1rem;
+    }
+
+    .checklist-item {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .template-preview {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      margin-top: 1rem;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-title">AI Guidebook</span>
+    </div>
+    <nav class="nav">
+      <button class="menu-toggle" id="menuToggle">☰</button>
+      <ul id="menu">
+        <li><a href="index.html"><i class="fas fa-home"></i> Hjem</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <h1><i class="fas fa-file-contract"></i> Policy og maler</h1>
+      <p class="lead">
+        Ferdige maler og retningslinjer for utvikling av lokal policy for ansvarlig AI-bruk i utdanning.
+      </p>
+    </section>
+
+    <section class="card policy-container">
+      <div class="policy-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-university"></i> Institusjonspolicy</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="policy-item">
+            <div class="policy-title">
+              <i class="fas fa-file-alt"></i>
+              <span>Grunnleggende prinsipper</span>
+            </div>
+            <p>En god AI-policy bør bygge på grunnleggende prinsipper som transparens, ansvarlighet, rettferdighet og akademisk integritet.</p>
+            <div class="checklist">
+              <div class="checklist-item">
+                <i class="fas fa-check-square"></i>
+                <span>Transparens om AI-bruk</span>
+              </div>
+              <div class="checklist-item">
+                <i class="fas fa-check-square"></i>
+                <span>Ansvarlig og etisk bruk</span>
+              </div>
+              <div class="checklist-item">
+                <i class="fas fa-check-square"></i>
+                <span>Rettferdig tilgang for alle studenter</span>
+              </div>
+              <div class="checklist-item">
+                <i class="fas fa-check-square"></i>
+                <span>Beskyttelse av akademisk integritet</span>
+              </div>
+            </div>
+            <div class="template-box">
+              <div class="template-title">Mal for grunnleggende prinsipper:</div>
+              <div class="template-preview">
+                <h4>AI-Policy: Grunnleggende Prinsipper</h4>
+                <p>[Institusjonsnavn] forplikter seg til å fremme ansvarlig bruk av kunstig intelligens (AI) i utdanning og forskning. Vår policy bygger på følgende grunnleggende prinsipper:</p>
+                <ol>
+                  <li><strong>Transparens:</strong> All bruk av AI-verktøy skal være åpen og tydelig dokumentert.</li>
+                  <li><strong>Ansvarlighet:</strong> Brukere av AI-verktøy er ansvarlige for innholdet de produserer.</li>
+                  <li><strong>Rettferdighet:</strong> Alle studenter skal ha lik tilgang til AI-verktøy og opplæring i deres bruk.</li>
+                  <li><strong>Akademisk integritet:</strong> AI skal brukes på måter som opprettholder og styrker akademisk ærlighet.</li>
+                </ol>
+              </div>
+              <button class="download-button" onclick="downloadTemplate(this)">
+                <i class="fas fa-download"></i> Last ned mal
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-clipboard-list"></i> Retningslinjer for oppgaver</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="policy-item">
+            <div class="policy-title">
+              <i class="fas fa-edit"></i>
+              <span>Bruk av AI i oppgaver</span>
+            </div>
+            <p>Utvikl klare retningslinjer for hvordan AI kan brukes i oppgaver. Spesifiser hva som er tillatt, hva som må dokumenteres, og eventuelle begrensninger.</p>
+            <div class="template-box">
+              <div class="template-title">Mal for oppgaveretningslinjer:</div>
+              <div class="template-preview">
+                <h4>Retningslinjer for bruk av AI i oppgaver</h4>
+                <p>For [emnenavn/oppgavetype], gjelder følgende retningslinjer for bruk av AI-verktøy:</p>
+                <ul>
+                  <li>AI-verktøy kan brukes til [spesifiser tillatte bruksområder, f.eks. idegenerering, strukturering, språkhjelp].</li>
+                  <li>AI-verktøy kan ikke brukes til [spesifiser forbudte bruksområder, f.eks. generering av ferdig tekst uten bearbeidelse].</li>
+                  <li>All bruk av AI-verktøy må dokumenteres i en egen seksjon kalt "AI-bruk".</li>
+                  <li>Dokumentasjonen må inkludere:
+                    <ul>
+                      <li>Hvilke verktøy som ble brukt</li>
+                      <li>Til hvilke formål verktøyene ble brukt</li>
+                      <li>Hvordan resultatene ble bearbeidet og kvalitetssikret</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <button class="download-button" onclick="downloadTemplate(this)">
+                <i class="fas fa-download"></i> Last ned mal
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-exam"></i> Retningslinjer for eksamen</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="policy-item">
+            <div class="policy-title">
+              <i class="fas fa-user-graduate"></i>
+              <span>AI-bruk under eksamen</span>
+            </div>
+            <p>Utvikl spesifikke retningslinjer for bruk av AI under eksamen. Disse bør være strenge for å sikre rettferdighet og akademisk integritet.</p>
+            <div class="template-box">
+              <div class="template-title">Mal for eksamensretningslinjer:</div>
+              <div class="template-preview">
+                <h4>Retningslinjer for AI-bruk under eksamen i [emnenavn]</h4>
+                <p>Under eksamen i [emnenavn] gjelder følgende regler for bruk av AI-verktøy:</p>
+                <ul>
+                  <li>Bruk av AI-verktøy er [tillatt/ikke tillatt] under eksamen.</li>
+                  <li>Hvis tillatt, kan AI-verktøy kun brukes til:
+                    <ul>
+                      <li>Språklig støtte (grammatikk, stavekontroll)</li>
+                      <li>[Andre spesifiserte tillatte bruksområder]</li>
+                    </ul>
+                  </li>
+                  <li>Følgende er ikke tillatt:
+                    <ul>
+                      <li>Generering av innhold eller løsninger</li>
+                      <li>Bruk av AI til å besvare eksamensspørsmål</li>
+                      <li>[Andre forbudte bruksområder]</li>
+                    </ul>
+                  </li>
+                  <li>All bruk av AI-verktøy må dokumenteres i besvarelsen.</li>
+                </ul>
+                <p>Brudd på disse retningslinjene vil bli betraktet som fusk og håndtert i henhold til institusjonens regler for akademisk uredelighet.</p>
+              </div>
+              <button class="download-button" onclick="downloadTemplate(this)">
+                <i class="fas fa-download"></i> Last ned mal
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-file-signature"></i> Dokumentasjonsmaler</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="policy-item">
+            <div class="policy-title">
+              <i class="fas fa-file-alt"></i>
+              <span>Dokumentasjon av AI-bruk</span>
+            </div>
+            <p>Utvikl maler for hvordan studenter skal dokumentere sin bruk av AI-verktøy. Dette bidrar til transparens og ansvarlighet.</p>
+            <div class="template-box">
+              <div class="template-title">Mal for AI-dokumentasjon:</div>
+              <div class="template-preview">
+                <h4>Dokumentasjon av AI-bruk</h4>
+                <p>Fyll ut følgende for å dokumentere din bruk av AI-verktøy i denne oppgaven:</p>
+                <ol>
+                  <li><strong>Verktøy:</strong> [Navn på AI-verktøy]</li>
+                  <li><strong>Formål:</strong> [Hva ble verktøyet brukt til?]</li>
+                  <li><strong>Input:</strong> [Hva ga du som input til verktøyet?]</li>
+                  <li><strong>Output:</strong> [Hva var output fra verktøyet?]</li>
+                  <li><strong>Bearbeidelse:</strong> [Hvordan bearbeidet du output fra verktøyet?]</li>
+                  <li><strong>Kvalitetssikring:</strong> [Hvordan kvalitetssikret du resultatet?]</li>
+                </ol>
+              </div>
+              <button class="download-button" onclick="downloadTemplate(this)">
+                <i class="fas fa-download"></i> Last ned mal
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-shield-alt"></i> Etikk og personvern</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="policy-item">
+            <div class="policy-title">
+              <i class="fas fa-user-shield"></i>
+              <span>Etiske retningslinjer</span>
+            </div>
+            <p>Utvikl retningslinjer for etisk bruk av AI, med fokus på personvern, rettferdighet og ansvarlighet.</p>
+            <div class="template-box">
+              <div class="template-title">Mal for etiske retningslinjer:</div>
+              <div class="template-preview">
+                <h4>Etiske retningslinjer for AI-bruk</h4>
+                <p>Ved bruk av AI-verktøy forplikter du deg til å følge disse etiske retningslinjene:</p>
+                <ol>
+                  <li><strong>Personvern:</strong> Del aldri personlige opplysninger eller sensitiv informasjon med AI-verktøy.</li>
+                  <li><strong>Rettferdighet:</strong> Bruk AI-verktøy på en måte som ikke diskriminerer eller favoriserer noen grupper.</li>
+                  <li><strong>Transparens:</strong> Vær åpen om bruk av AI-verktøy og deres begrensninger.</li>
+                  <li><strong>Ansvarlighet:</strong> Ta ansvar for innholdet du produserer med hjelp av AI-verktøy.</li>
+                  <li><strong>Bærekraft:</strong> Vurder miljøpåvirkningen av din bruk av AI-verktøy.</li>
+                </ol>
+              </div>
+              <button class="download-button" onclick="downloadTemplate(this)">
+                <i class="fas fa-download"></i> Last ned mal
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Laget for studenter og ansatte — Gruppe 5 — Praktisk prosjektarbeid — Vår 2026</p>
+  </footer>
+
+  <script>
+    function toggleCategory(header) {
+      const category = header.parentElement;
+      const content = category.querySelector('.category-content');
+      const icon = header.querySelector('.tip-icon');
+
+      if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        icon.classList.remove('open');
+      } else {
+        // Close all other categories
+        document.querySelectorAll('.category-content').forEach(item => {
+          item.classList.remove('active');
+        });
+        document.querySelectorAll('.tip-icon').forEach(item => {
+          item.classList.remove('open');
+        });
+
+        // Open the clicked category
+        content.classList.add('active');
+        icon.classList.add('open');
+      }
+    }
+
+    function downloadTemplate(button) {
+      const templateBox = button.parentElement;
+      const templateTitle = templateBox.querySelector('.template-title').textContent;
+      const templateContent = templateBox.querySelector('.template-preview').innerHTML;
+
+      // Create a blob with the template content
+      const blob = new Blob([`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>${templateTitle}</title>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; margin: 2rem; color: #333; }
+            h4 { color: #2c3e50; }
+          </style>
+        </head>
+        <body>
+          ${templateContent}
+        </body>
+        </html>
+      `], { type: 'text/html' });
+
+      // Create a download link
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${templateTitle.replace(/:/g, '')}.html`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      button.textContent = 'Nedlasting fullført!';
+      setTimeout(() => {
+        button.textContent = 'Last ned mal';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

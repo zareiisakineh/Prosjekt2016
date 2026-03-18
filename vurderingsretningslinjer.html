@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vurderingsretningslinjer – AI Guidebook</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .assessment-container {
+      margin: 2rem 0;
+    }
+
+    .guideline-category {
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .category-header {
+      background-color: var(--primary-light);
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .category-header:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .category-content {
+      display: none;
+      padding: 1rem;
+      background-color: var(--card-bg);
+    }
+
+    .category-content.active {
+      display: block;
+    }
+
+    .guideline-item {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-left: 4px solid var(--primary-color);
+      background-color: rgba(74, 111, 165, 0.05);
+      border-radius: 4px;
+    }
+
+    .guideline-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tip-icon {
+      transition: transform 0.3s;
+    }
+
+    .tip-icon.open {
+      transform: rotate(180deg);
+    }
+
+    .example-box {
+      background-color: var(--primary-light);
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    .example-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .copy-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .copy-button:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .resource-list {
+      margin-top: 1rem;
+      padding-left: 1rem;
+    }
+
+    .resource-item {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .resource-link {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .resource-link:hover {
+      text-decoration: underline;
+    }
+
+    .checklist {
+      margin-top: 1rem;
+      padding-left: 1rem;
+    }
+
+    .checklist-item {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-title">AI Guidebook</span>
+    </div>
+    <nav class="nav">
+      <button class="menu-toggle" id="menuToggle">☰</button>
+      <ul id="menu">
+        <li><a href="index.html"><i class="fas fa-home"></i> Hjem</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <h1><i class="fas fa-gavel"></i> Vurderingsretningslinjer</h1>
+      <p class="lead">
+        Veiledning for hvordan håndtere AI-bruk i eksamen og oppgaver på en rettferdig og transparent måte.
+      </p>
+    </section>
+
+    <section class="card assessment-container">
+      <div class="guideline-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-file-alt"></i> Retningslinjer for oppgaver</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="guideline-item">
+            <div class="guideline-title">
+              <i class="fas fa-edit"></i>
+              <span>Klarhet i oppgavebeskrivelser</span>
+            </div>
+            <p>Vær tydelig i oppgavebeskrivelsene om hva som er tillatt bruk av AI-verktøy. Spesifiser om og hvordan AI kan brukes, og hva som må dokumenteres.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel på oppgaveformulering:</div>
+              <p>I denne oppgaven er bruk av AI-verktøy tillatt for å generere ideer og strukturere innhold. All bruk av AI må dokumenteres i en egen seksjon kalt "AI-bruk", der du beskriver hvordan verktøyene ble brukt og hvordan du har bearbeidet og kvalitetssikret resultatene.</p>
+              <button class="copy-button" onclick="copyToClipboard(this)">Kopier eksempel</button>
+            </div>
+          </div>
+
+          <div class="guideline-item">
+            <div class="guideline-title">
+              <i class="fas fa-clipboard-list"></i>
+              <span>Dokumentasjonskrav</span>
+            </div>
+            <p>Krev at studentene dokumenterer sin bruk av AI-verktøy. Dette kan inkludere hvilke verktøy som ble brukt, til hvilke formål, og hvordan resultatene ble bearbeidet.</p>
+            <div class="checklist">
+              <div class="checklist-item">
+                <i class="fas fa-check-square"></i>
+                <span>Hvilke AI-verktøy ble brukt?</span>
+              </div>
+              <div class="checklist-item">
+                <i class="fas fa-check-square"></i>
+                <span>Til hvilke formål ble verktøyene brukt?</span>
+              </div>
+              <div class="checklist-item">
+                <i class="fas fa-check-square"></i>
+                <span>Hvordan ble resultatene bearbeidet og kvalitetssikret?</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guideline-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-user-graduate"></i> Eksamen og vurdering</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="guideline-item">
+            <div class="guideline-title">
+              <i class="fas fa-exam"></i>
+              <span>AI-bruk under eksamen</span>
+            </div>
+            <p>Vurder om bruk av AI-verktøy skal være tillatt under eksamen. Hvis det er tillatt, må det være klare retningslinjer for hva som er akseptabelt, og hvordan bruk skal dokumenteres.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel på eksamensregler:</div>
+              <ul>
+                <li>Bruk av AI-verktøy er tillatt for språklig støtte (f.eks. grammatikk og stavekontroll).</li>
+                <li>AI-verktøy kan ikke brukes til å generere innhold eller løsninger.</li>
+                <li>All bruk av AI-verktøy må dokumenteres i besvarelsen.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="guideline-item">
+            <div class="guideline-title">
+              <i class="fas fa-balance-scale"></i>
+              <span>Vurdering av AI-bruk</span>
+            </div>
+            <p>Inkluder vurdering av studentenes evne til å bruke AI-verktøy kritisk og ansvarlig. Dette kan være en del av vurderingskriteriene.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel på vurderingskriterier:</div>
+              <ul>
+                <li>Evne til å kritisk vurdere AI-generert innhold</li>
+                <li>Dokumentasjon og åpenhet om AI-bruk</li>
+                <li>Egeninnsats og forbedring av AI-generert materiale</li>
+                <li>Etisk refleksjon rundt bruk av AI</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guideline-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-search"></i> Deteksjon og håndtering</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="guideline-item">
+            <div class="guideline-title">
+              <i class="fas fa-binoculars"></i>
+              <span>Deteksjon av AI-generert innhold</span>
+            </div>
+            <p>Bruk verktøy for å detektere AI-generert innhold, men vær oppmerksom på at disse verktøyene ikke er 100% nøyaktige. Kombiner teknologisk deteksjon med pedagogisk vurdering.</p>
+            <div class="resource-list">
+              <div class="resource-item">
+                <i class="fas fa-external-link-alt"></i>
+                <a href="https://www.grammarly.com/ai-detector" class="resource-link" target="_blank">Grammarly AI Detector</a>
+              </div>
+              <div class="resource-item">
+                <i class="fas fa-external-link-alt"></i>
+                <a href="https://writer.com/ai-content-detector/" class="resource-link" target="_blank">Writer AI Content Detector</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="guideline-item">
+            <div class="guideline-title">
+              <i class="fas fa-gavel"></i>
+              <span>Håndtering av brudd på retningslinjer</span>
+            </div>
+            <p>Utvikl klare prosedyrer for håndtering av brudd på retningslinjer for AI-bruk. Dette bør inkludere en gradert tilnærming, fra dialog og veiledning til formelle sanksjoner.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel på gradert respons:</div>
+              <ol>
+                <li>Dialog med studenten om korrekt bruk</li>
+                <li>Krav om omarbeidelse av oppgaven</li>
+                <li>Formell advarsel</li>
+                <li>Rapport til disiplinærnemnda</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guideline-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-book"></i> Retningslinjer og policy</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="guideline-item">
+            <div class="guideline-title">
+              <i class="fas fa-file-contract"></i>
+              <span>Utvikling av lokale retningslinjer</span>
+            </div>
+            <p>Utvikl klare, lokale retningslinjer for AI-bruk som er tilpasset ditt fagområde og institusjon. Involver både fagpersonale og studenter i denne prosessen.</p>
+            <div class="resource-list">
+              <div class="resource-item">
+                <i class="fas fa-file-alt"></i>
+                <a href="https://www.usn.no/" class="resource-link" target="_blank">Eksempel på retningslinjer fra USN</a>
+              </div>
+              <div class="resource-item">
+                <i class="fas fa-file-alt"></i>
+                <a href="https://www.uio.no/" class="resource-link" target="_blank">UiOs retningslinjer for KI</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="guideline-item">
+            <div class="guideline-title">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Kommunikasjon og opplæring</span>
+            </div>
+            <p>Kommuniser retningslinjene tydelig til både studenter og ansatte. Tilby opplæring og veiledning for å sikre at alle forstår og følger retningslinjene.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel på opplæringstilbud:</div>
+              <ul>
+                <li>Workshops om ansvarlig AI-bruk</li>
+                <li>Veiledningsmateriell og FAQ</li>
+                <li>Regelmessige oppdateringer om endringer i retningslinjer</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Laget for studenter og ansatte — Gruppe 5 — Praktisk prosjektarbeid — Vår 2026</p>
+  </footer>
+
+  <script>
+    function toggleCategory(header) {
+      const category = header.parentElement;
+      const content = category.querySelector('.category-content');
+      const icon = header.querySelector('.tip-icon');
+
+      if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        icon.classList.remove('open');
+      } else {
+        // Close all other categories
+        document.querySelectorAll('.category-content').forEach(item => {
+          item.classList.remove('active');
+        });
+        document.querySelectorAll('.tip-icon').forEach(item => {
+          item.classList.remove('open');
+        });
+
+        // Open the clicked category
+        content.classList.add('active');
+        icon.classList.add('open');
+      }
+    }
+
+    function copyToClipboard(button) {
+      const exampleBox = button.parentElement;
+      const textToCopy = exampleBox.querySelector('p, ul, ol').textContent;
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        button.textContent = 'Kopiert!';
+        setTimeout(() => {
+          button.textContent = 'Kopier eksempel';
+        }, 2000);
+      }).catch(err => {
+        console.error('Kunne ikke kopiere tekst: ', err);
+      });
+    }
+  </script>
+</body>
+</html>
