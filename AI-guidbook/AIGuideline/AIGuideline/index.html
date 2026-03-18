@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Guidebook</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-title">AI Guidebook</span>
+    </div>
+    <nav class="nav" aria-label="Hovedmeny">
+      <button class="menu-toggle" aria-label="Åpne meny" id="menuToggle">☰</button>
+      <ul id="menu">
+       
+        <li><a href="contact.html"><i class="fas fa-envelope"></i> Kontakt</a></li>
+         <li><a href="index.html" aria-current="page"><i class="fas fa-home"></i> Hjem</a></li>
+      <li><a href="faq.html" aria-current="page"><i class="fas fa-question-circle"></i> FAQ</a></li>
+      <li><a href="tips.html"><i class="fas fa-lightbulb"></i> Praktiske tips</a></li>
+      <li><a href="quiz.html"><i class="fas fa-clipboard-list"></i> Test deg selv</a></li>
+      <li><a href="links.html"><i class="fas fa-link"></i> Nyttige lenker</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <h1>Klar for å bruke AI på en smart og trygg måte?</h1>
+      <p class="lead">
+        Lær hvordan du kan bruke AI som støtte i studiene – uten å bryte reglene.
+        <strong>Eksempel:</strong> Slik kan AI hjelpe deg med å strukturere oppgaver eller finne kilder.
+      </p>
+
+      <div class="why-matters">
+        <h3><i class="fas fa-info-circle"></i> Hvorfor dette er viktig</h3>
+        <p>
+          AI kan spare deg for tid og hjelpe deg å lære bedre – men det er viktig å bruke det riktig.
+          Her får du konkrete tips og eksempler som passer for deg som student/ansatt.
+        </p>
+      </div>
+
+      <!-- Rollevelger -->
+      <div class="role-selector">
+        <h3>Jeg er:</h3>
+        <div class="role-options">
+          <button class="role-btn active" data-role="student">Student</button>
+          <button class="role-btn" data-role="staff">Ansatt</button>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn" href="quiz.html"><i class="fas fa-clipboard-list"></i> Test din kunnskap</a>
+      </div>
+
+      <p class="small">
+        AI Guidebook supplerer lokale retningslinjer.
+        Ved tvil: sjekk emnebeskrivelse og regelverk ved din institusjon.
+      </p>
+    </section>
+
+    <!-- Innhold for studenter -->
+    <section class="card content-student" data-role="student">
+      <h2>For studenter</h2>
+      <p>
+        Få tydelige, praktiske råd om ansvarlig AI-bruk i studier.
+        Lær hvordan du kan bruke AI som støtte uten å bryte akademiske regler.
+      </p>
+      <div class="grid">
+        <a href="tips.html" class="tile">
+          <h3><i class="fas fa-lightbulb"></i> Slik bruker du AI i oppgaveskriving</h3>
+          <p>Praktiske eksempler: Hvordan bruke AI til å finne kilder, strukturere tekst og unngå plagiat.</p>
+        </a>
+        <a href="quiz.html" class="tile">
+          <h3><i class="fas fa-clipboard-list"></i> Test din kunnskap</h3>
+          <p>Sjekk om du kan skille mellom lovlig og ulovlig AI-bruk.</p>
+        </a>
+        <a href="faq.html" class="tile">
+          <h3><i class="fas fa-question-circle"></i> Vanlige spørsmål</h3>
+          <p>Svar på det studentene lurer mest på.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Innhold for ansatte -->
+    <section class="card content-staff" data-role="staff" style="display: none;">
+      <h2>For ansatte</h2>
+      <p>
+        Veiledning for lærere, sensorer, studieadministrasjon og universitetet –
+        om hvordan håndtere AI i undervisning, vurdering og policy.
+      </p>
+      <div class="grid">
+        <a href="tips.html" class="tile">
+          <h3><i class="fas fa-chalkboard-teacher"></i> Undervisningstips</h3>
+          <p>Hvordan integrere AI i emner og oppgaver.</p>
+        </a>
+        <a href="faq.html" class="tile">
+          <h3><i class="fas fa-gavel"></i> Vurderingsretningslinjer</h3>
+          <p>Håndtering av AI-bruk i eksamen og oppgaver.</p>
+        </a>
+        <a href="links.html" class="tile">
+          <h3><i class="fas fa-university"></i> Policy og maler</h3>
+          <p>Ferdige maler for lokale retningslinjer.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Felles ressurser -->
+    <section class="card" data-role="student staff">
+      <h2>Felles ressurser</h2>
+      <p>
+        Her finner alle brukerne våre felles retningslinjer, nyheter om AI i utdanning,
+        og lenker til eksterne ressurser.
+      </p>
+      <div class="grid">
+        <a href="faq.html" class="tile">
+          <h3><i class="fas fa-question-circle"></i> FAQ</h3>
+          <p>Svar på vanlige spørsmål for alle målgrupper.</p>
+        </a>
+        <a href="tips.html" class="tile">
+          <h3><i class="fas fa-lightbulb"></i> Praktiske tips</h3>
+          <p>Konkrete råd for ansvarlig AI-bruk.</p>
+        </a>
+        <a href="quiz.html" class="tile">
+          <h3><i class="fas fa-clipboard-list"></i> Test deg selv</h3>
+          <p>Sjekk din kunnskap om AI og akademisk integritet.</p>
+        </a>
+        <a href="links.html" class="tile">
+          <h3><i class="fas fa-link"></i> Nyttige lenker</h3>
+          <p>Eksterne ressurser og verktøy.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Laget for studenter og ansatte — Gruppe 5 — Praktisk prosjektarbeid — Vår 2026</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

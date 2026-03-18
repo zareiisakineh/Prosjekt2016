@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Undervisningstips – AI Guidebook</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .teaching-container {
+      margin: 2rem 0;
+    }
+
+    .tip-category {
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .category-header {
+      background-color: var(--primary-light);
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .category-header:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .category-content {
+      display: none;
+      padding: 1rem;
+      background-color: var(--card-bg);
+    }
+
+    .category-content.active {
+      display: block;
+    }
+
+    .tip-item {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-left: 4px solid var(--primary-color);
+      background-color: rgba(74, 111, 165, 0.05);
+      border-radius: 4px;
+    }
+
+    .tip-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tip-icon {
+      transition: transform 0.3s;
+    }
+
+    .tip-icon.open {
+      transform: rotate(180deg);
+    }
+
+    .example-box {
+      background-color: var(--primary-light);
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    .example-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .copy-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .copy-button:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .resource-list {
+      margin-top: 1rem;
+      padding-left: 1rem;
+    }
+
+    .resource-item {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .resource-link {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .resource-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-title">AI Guidebook</span>
+    </div>
+    <nav class="nav">
+      <button class="menu-toggle" id="menuToggle">☰</button>
+      <ul id="menu">
+        <li><a href="index.html"><i class="fas fa-home"></i> Hjem</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <h1><i class="fas fa-chalkboard-teacher"></i> Undervisningstips</h1>
+      <p class="lead">
+        Lær hvordan du kan integrere KI i undervisning, emner og oppgaver på en ansvarlig og pedagogisk måte.
+      </p>
+    </section>
+
+    <section class="card teaching-container">
+      <div class="tip-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-book"></i> Integrering av KI i emner</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="tip-item">
+            <div class="tip-title">
+              <i class="fas fa-lightbulb"></i>
+              <span>Introduksjon til KI-verktøy</span>
+            </div>
+            <p>Start med å introdusere studentene for grunnleggende KI-verktøy og deres potensiale. Forklar hvordan KI kan brukes som et støtteverktøy i læring og forskning, men også begrensningene og etiske hensyn.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel på undervisningsaktivitet:</div>
+              <p>Hold en workshop der studentene får prøve ulike KI-verktøy (f.eks. ChatGPT, Bing AI) og reflektere over hvordan disse kan brukes i deres studier.</p>
+            </div>
+          </div>
+
+          <div class="tip-item">
+            <div class="tip-title">
+              <i class="fas fa-tasks"></i>
+              <span>KI i pensum</span>
+            </div>
+            <p>Inkluder temaer knyttet til KI, etikk og digital kompetanse i pensum. Dette kan være relevant i mange fag, fra teknologi og samfunnsfag til humaniora.</p>
+            <div class="resource-list">
+              <div class="resource-item">
+                <i class="fas fa-book"></i>
+                <a href="https://www.sokogskriv.no/kunstig-intelligens/" class="resource-link" target="_blank">Søk & Skriv om KI</a>
+              </div>
+              <div class="resource-item">
+                <i class="fas fa-file-pdf"></i>
+                <a href="https://www.regjeringen.no/no/tema/teknologi-og-innovasjon/kunstig-intelligens/id2853002/" class="resource-link" target="_blank">Regjeringens KI-strategi</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-edit"></i> KI i oppgaver</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="tip-item">
+            <div class="tip-title">
+              <i class="fas fa-pencil-alt"></i>
+              <span>Design av oppgaver med KI</span>
+            </div>
+            <p>Utform oppgaver som oppmuntrer til kritisk bruk av KI. Eksempler kan være å bruke KI til å generere utkast som studentene må analysere, vurdere og forbedre.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel på oppgave:</div>
+              <p>Be studentene bruke KI til å generere et utkast til en oppgave om et gitt tema. Deretter må de analysere KI-generert innhold, identifisere eventuelle feil eller mangler, og skrive en forbedret versjon.</p>
+              <button class="copy-button" onclick="copyToClipboard(this)">Kopier oppgavebeskrivelse</button>
+            </div>
+          </div>
+
+          <div class="tip-item">
+            <div class="tip-title">
+              <i class="fas fa-clipboard-check"></i>
+              <span>Vurdering av KI-bruk</span>
+            </div>
+            <p>Inkluder vurdering av hvordan studentene bruker KI i oppgaveløsningen. Dette kan være en del av vurderingskriteriene, f.eks. evnen til å kritisk vurdere og forbedre KI-generert innhold.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel på vurderingskriterier:</div>
+              <ul>
+                <li>Kritisk analyse av KI-generert innhold</li>
+                <li>Egeninnsats og forbedringer</li>
+                <li>Kildebruk og faktasjekk</li>
+                <li>Etisk refleksjon rundt KI-bruk</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-users"></i> KI i gruppearbeid</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="tip-item">
+            <div class="tip-title">
+              <i class="fas fa-people-carry"></i>
+              <span>Kollaborativ KI-bruk</span>
+            </div>
+            <p>Oppmuntr til bruk av KI i gruppearbeid, der studentene samarbeider om å vurdere og forbedre KI-generert innhold. Dette kan fremme diskusjon og kritisk tenkning.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel på gruppeoppgave:</div>
+              <p>Gruppene får i oppgave å bruke KI til å generere en felles tekst om et gitt tema. Deretter må de diskutere, vurdere og forbedre teksten sammen, og reflektere over KI-verktøyets styrker og svakheter.</p>
+            </div>
+          </div>
+
+          <div class="tip-item">
+            <div class="tip-title">
+              <i class="fas fa-comments"></i>
+              <span>Refleksjon og diskusjon</span>
+            </div>
+            <p>Legg til rette for diskusjoner rundt etiske dilemmaer og utfordringer med KI. Dette kan gjøres gjennom seminarer, debatter eller refleksjonsnotater.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel på diskusjonstema:</div>
+              <ul>
+                <li>Hva er de etiske utfordringene med KI i akademisk skriving?</li>
+                <li>Hvordan kan vi sikre at KI brukes på en rettferdig måte?</li>
+                <li>Hva er konsekvensene av å stole for mye på KI?</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span><i class="fas fa-exclamation-triangle"></i> Etikk og retningslinjer</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="tip-item">
+            <div class="tip-title">
+              <i class="fas fa-gavel"></i>
+              <span>Utvikling av retningslinjer</span>
+            </div>
+            <p>Utarbeid klare retningslinjer for KI-bruk i dine emner. Dette bør inkludere hva som er tillatt, hva som kreves oppgitt, og konsekvenser ved brudd på retningslinjene.</p>
+            <div class="resource-list">
+              <div class="resource-item">
+                <i class="fas fa-file-alt"></i>
+                <a href="https://www.usn.no/" class="resource-link" target="_blank">Eksempel på retningslinjer fra USN</a>
+              </div>
+              <div class="resource-item">
+                <i class="fas fa-university"></i>
+                <a href="https://www.uio.no/" class="resource-link" target="_blank">UiOs retningslinjer for KI</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-item">
+            <div class="tip-title">
+              <i class="fas fa-balance-scale"></i>
+              <span>Transparens og åpenhet</span>
+            </div>
+            <p>Vær åpen om dine egne erfaringer og utfordringer med KI. Del eksempler på hvordan du bruker KI i undervisningen, og oppmuntr studentene til å være åpne om sin bruk.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel på åpenhet:</div>
+              <p>Fortell studentene hvordan du har brukt KI til å forberede undervisningsmateriale, og diskuter fordeler og ulemper med denne tilnærmingen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Laget for studenter og ansatte — Gruppe 5 — Praktisk prosjektarbeid — Vår 2026</p>
+  </footer>
+
+  <script>
+    function toggleCategory(header) {
+      const category = header.parentElement;
+      const content = category.querySelector('.category-content');
+      const icon = header.querySelector('.tip-icon');
+
+      if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        icon.classList.remove('open');
+      } else {
+        // Close all other categories
+        document.querySelectorAll('.category-content').forEach(item => {
+          item.classList.remove('active');
+        });
+        document.querySelectorAll('.tip-icon').forEach(item => {
+          item.classList.remove('open');
+        });
+
+        // Open the clicked category
+        content.classList.add('active');
+        icon.classList.add('open');
+      }
+    }
+
+    function copyToClipboard(button) {
+      const exampleBox = button.parentElement;
+      const textToCopy = exampleBox.querySelector('p, ul').textContent;
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        button.textContent = 'Kopiert!';
+        setTimeout(() => {
+          button.textContent = 'Kopier oppgavebeskrivelse';
+        }, 2000);
+      }).catch(err => {
+        console.error('Kunne ikke kopiere tekst: ', err);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Praktiske tips – AI Guidebook</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .tips-container {
+      margin: 2rem 0;
+    }
+
+    .tip-category {
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .category-header {
+      background-color: var(--primary-light);
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .category-header:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .category-content {
+      display: none;
+      padding: 1rem;
+      background-color: var(--card-bg);
+    }
+
+    .category-content.active {
+      display: block;
+    }
+
+    .tip-item {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-left: 4px solid var(--primary-color);
+      background-color: rgba(74, 111, 165, 0.05);
+      border-radius: 4px;
+    }
+
+    .tip-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .tip-icon {
+      transition: transform 0.3s;
+    }
+
+    .tip-icon.open {
+      transform: rotate(180deg);
+    }
+
+    .example-box {
+      background-color: var(--primary-light);
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    .example-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .copy-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .copy-button:hover {
+      background-color: var(--secondary-color);
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-title">AI Guidebook</span>
+    </div>
+    <nav class="nav">
+      <button class="menu-toggle" id="menuToggle">☰</button>
+      <ul id="menu">
+        <li><a href="index.html"><i class="fas fa-home"></i> Hjem</a></li>
+        <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+        <li><a href="quiz.html"><i class="fas fa-clipboard-list"></i> Test deg selv</a></li>
+        <li><a href="links.html"><i class="fas fa-link"></i> Nyttige lenker</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1><i class="fas fa-lightbulb"></i> Praktiske tips</h1>
+      <p class="lead">Her finner du konkrete råd og eksempler for ansvarlig bruk av KI i studiene.</p>
+    </section>
+
+    <section class="card tips-container">
+      <div class="tip-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span>Oppgaveskriving</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="tip-item">
+            <div class="tip-title">Strukturering av oppgaver</div>
+            <p>Bruk KI til å lage en struktur for oppgaven din. Gi KI-en en kort beskrivelse av temaet og be om et forslag til innholdsfortegnelse.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel-prompt:</div>
+              <p>Lag en struktur for en oppgave om bærekraftig utvikling med fokus på fornybar energi. Oppgaven skal være på 10 sider og inkludere innledning, teori, metode, analyse, diskusjon og konklusjon.</p>
+              <button class="copy-button" onclick="copyToClipboard(this)">Kopier prompt</button>
+            </div>
+          </div>
+
+          <div class="tip-item">
+            <div class="tip-title">Generering av ideer</div>
+            <p>KI kan hjelpe deg med å generere ideer til emner, problemstillinger eller vinklinger for oppgaven din.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel-prompt:</div>
+              <p>Foreslå fem aktuelle problemstillinger innen digital etikk som egner seg for en bacheloroppgave på 15 studiepoeng.</p>
+              <button class="copy-button" onclick="copyToClipboard(this)">Kopier prompt</button>
+            </div>
+          </div>
+
+          <div class="tip-item">
+            <div class="tip-title">Språkhjelp</div>
+            <p>KI kan hjelpe deg med å forbedre språket i oppgaven din, men husk at du selv er ansvarlig for det endelige resultatet.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel-prompt:</div>
+              <p>Forbedre dette avsnittet for å gjøre det klarere og mer akademisk: [lim inn teksten din her].</p>
+              <button class="copy-button" onclick="copyToClipboard(this)">Kopier prompt</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span>Kildebruk</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="tip-item">
+            <div class="tip-title">Finn kilder</div>
+            <p>KI kan foreslå relevante kilder, men du må alltid dobbeltsjekke at kildene faktisk eksisterer og er troverdige.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel-prompt:</div>
+              <p>Foreslå fem vitenskapelige artikler om kunstig intelligens i utdanning publisert de siste tre årene.</p>
+              <button class="copy-button" onclick="copyToClipboard(this)">Kopier prompt</button>
+            </div>
+          </div>
+
+          <div class="tip-item">
+            <div class="tip-title">Referansesjekk</div>
+            <p>Bruk KI til å sjekke om referansene dine er korrekt formaterte.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel-prompt:</div>
+              <p>Sjekk om denne referansen er korrekt formatert i APA-stil: [lim inn referansen din her].</p>
+              <button class="copy-button" onclick="copyToClipboard(this)">Kopier prompt</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span>Etikk og ansvar</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="tip-item">
+            <div class="tip-title">Unngå plagiat</div>
+            <p>Bruk aldri KI til å generere tekst som du leverer som din egen uten å sitere eller oppgi KI-bruk.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel-prompt:</div>
+              <p>Hjelp meg med å omformulere dette avsnittet slik at det ikke blir plagiat: [lim inn teksten din her].</p>
+              <button class="copy-button" onclick="copyToClipboard(this)">Kopier prompt</button>
+            </div>
+          </div>
+
+          <div class="tip-item">
+            <div class="tip-title">Personvern</div>
+            <p>Del aldri personlige opplysninger eller sensitiv informasjon med KI-verktøy.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-category">
+        <div class="category-header" onclick="toggleCategory(this)">
+          <span>Prompt Engineering</span>
+          <i class="fas fa-chevron-down tip-icon"></i>
+        </div>
+        <div class="category-content">
+          <div class="tip-item">
+            <div class="tip-title">Vær spesifikk</div>
+            <p>Jo mer spesifikk du er i prompten din, jo bedre svar får du.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel:</div>
+              <p>I stedet for: "Fortell meg om klimaendringer"<br>
+                 Prøv: "Gi en oversikt over de viktigste årsakene til klimaendringer de siste 50 årene, med fokus på menneskeskapte faktorer. Inkluder statistikk og eksempler fra Europa."</p>
+            </div>
+          </div>
+
+          <div class="tip-item">
+            <div class="tip-title">Gi kontekst</div>
+            <p>Forklar bakgrunnen og formålet med spørsmålet ditt.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel:</div>
+              <p>Jeg skriver en oppgave om bærekraftig byutvikling for et universitetskurs. Kan du hjelpe meg med å lage en problemstilling som fokuserer på hvordan grønne tak kan bidra til å redusere byers klimagassutslipp?</p>
+            </div>
+          </div>
+
+          <div class="tip-item">
+            <div class="tip-title">Be om struktur</div>
+            <p>Be om svar i en bestemt struktur for bedre lesbarhet.</p>
+            <div class="example-box">
+              <div class="example-title">Eksempel:</div>
+              <p>Gi meg en oversikt over fordeler og ulemper med fjernundervisning, organisert i en tabell med kolonner for 'Fordeler', 'Ulemper' og 'Eksempler'.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Laget for studenter og ansatte — Gruppe 5 — Praktisk prosjektarbeid — Vår 2026</p>
+  </footer>
+
+  <script>
+    function toggleCategory(header) {
+      const category = header.parentElement;
+      const content = category.querySelector('.category-content');
+      const icon = header.querySelector('.tip-icon');
+
+      if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        icon.classList.remove('open');
+      } else {
+        // Close all other categories
+        document.querySelectorAll('.category-content').forEach(item => {
+          item.classList.remove('active');
+        });
+        document.querySelectorAll('.tip-icon').forEach(item => {
+          item.classList.remove('open');
+        });
+
+        // Open the clicked category
+        content.classList.add('active');
+        icon.classList.add('open');
+      }
+    }
+
+    function copyToClipboard(button) {
+      const exampleBox = button.parentElement;
+      const textToCopy = exampleBox.querySelector('p').textContent;
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        button.textContent = 'Kopiert!';
+        setTimeout(() => {
+          button.textContent = 'Kopier prompt';
+        }, 2000);
+      }).catch(err => {
+        console.error('Kunne ikke kopiere tekst: ', err);
+      });
+    }
+  </script>
+   <script src="app.js" defer></script>
+</body>
+</html>
