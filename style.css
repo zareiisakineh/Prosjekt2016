@@ -407,3 +407,33 @@ a {
 .skip-link:focus {
   top: 0; /* Synlig når den er i fokus */
 }
+.search-bar {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.search-bar input[type="search"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+}
+
+.search-bar input[type="search"]:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Skjuler label visuelt, men beholder den for skjermlesere */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
