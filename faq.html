@@ -3,147 +3,157 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FAQ – AI Guidebook</title>
+  <title>FAQ – KI-veileder for studenter</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
   <style>
-    .faq-container {
-      margin: 2rem 0;
-    }
-
-    .faq-item {
-      margin-bottom: 1rem;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .faq-question {
-      width: 100%;
-      padding: 1rem;
-      background-color: var(--primary-light);
-      border: none;
-      text-align: left;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .faq-question:hover {
-      background-color: var(--primary-color);
-      color: white;
-    }
-
-    .faq-answer {
-      padding: 1rem;
-      display: none;
-      background-color: var(--card-bg);
-    }
-
-    .faq-answer.active {
-      display: block;
-    }
-
-    .faq-icon {
-      transition: transform 0.3s;
-    }
-
-    .faq-icon.open {
-      transform: rotate(180deg);
-    }
+    .faq-container { margin: 2rem 0; }
+    .faq-item { margin-bottom: 1rem; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+    .faq-question { width: 100%; padding: 1rem; background-color: var(--primary-light); border: none; text-align: left; cursor: pointer; font-size: 1rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+    .faq-question:hover { background-color: var(--primary-color); color: white; }
+    .faq-answer { padding: 1rem; display: none; background-color: var(--card-bg); }
+    .faq-answer.active { display: block; }
+    .faq-icon { transition: transform 0.3s; }
+    .faq-icon.open { transform: rotate(180deg); }
   </style>
 </head>
-
 <body>
+
+  <a href="#hovedinnhold" class="skip-link" data-i18n="skip_link">Hopp til hovedinnhold</a>
+
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
   <header class="topbar">
     <div class="brand">
-      <span class="brand-title">AI Guidebook</span>
+      <a href="index.html" aria-label="KI-veileder for studenter – gå til forsiden">
+        <span class="brand-title" data-i18n="brand_title"></span>
+      </a>
     </div>
-    <nav class="nav">
-      <button class="menu-toggle" id="menuToggle">☰</button>
-      <ul id="menu">
-        <li><a href="index.html"><i class="fas fa-home"></i> Hjem</a></li>
-        <li><a href="tips.html"><i class="fas fa-lightbulb"></i> Praktiske tips</a></li>
-        <li><a href="quiz.html"><i class="fas fa-clipboard-list"></i> Test deg selv</a></li>
-        <li><a href="links.html"><i class="fas fa-link"></i> Nyttige lenker</a></li>
+    <nav class="nav" aria-label="Hovedmeny">
+      <ul class="nav-desktop" role="list">
+        <li><a href="index.html" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i> <span data-i18n="home"></span></a></li>
+        <li><a href="faq.html" class="nav-link active" aria-current="page"><i class="fas fa-question-circle" aria-hidden="true"></i> <span data-i18n="faq"></span></a></li>
+        <li><a href="tips.html" class="nav-link"><i class="fas fa-lightbulb" aria-hidden="true"></i> <span data-i18n="ai_questions"></span></a></li>
+        <li><a href="quiz.html" class="nav-link"><i class="fas fa-clipboard-list" aria-hidden="true"></i> <span data-i18n="self_test"></span></a></li>
+        <li><a href="links.html" class="nav-link"><i class="fas fa-link" aria-hidden="true"></i> <span data-i18n="useful_links"></span></a></li>
+        <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope" aria-hidden="true"></i> <span data-i18n="contact"></span></a></li>
       </ul>
+      <button class="menu-toggle" aria-label="Åpne navigasjonsmeny" aria-expanded="false" aria-controls="sideMenu" id="menuToggle">
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+      </button>
     </nav>
+    <div class="language-selector">
+      <button onclick="changeLanguage('no')" aria-label="Norsk" class="lang-btn lang-no" title="Norsk">NO</button>
+      <button onclick="changeLanguage('en')" aria-label="English" class="lang-btn lang-en" title="English">EN</button>
+    </div>
   </header>
 
-  <main class="container">
-    <section class="card">
-      <h1><i class="fas fa-question-circle"></i> Vanlige spørsmål</h1>
-      <p class="lead">Her finner du svar på vanlige spørsmål om bruk av KI i utdanning.</p>
+  <aside class="side-menu" id="sideMenu" aria-hidden="true" aria-label="Mobilnavigasjon">
+    <div class="side-menu-header">
+      <span class="side-menu-title" data-i18n="menu"></span>
+      <button class="side-menu-close" id="menuClose" aria-label="Lukk navigasjonsmeny">✕</button>
+    </div>
+    <nav aria-label="Mobilmeny">
+      <ul role="list">
+        <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> <span data-i18n="home"></span></a></li>
+        <li><a href="faq.html" class="active" aria-current="page"><i class="fas fa-question-circle" aria-hidden="true"></i> <span data-i18n="faq"></span></a></li>
+        <li><a href="tips.html"><i class="fas fa-lightbulb" aria-hidden="true"></i> <span data-i18n="ai_questions"></span></a></li>
+        <li><a href="quiz.html"><i class="fas fa-clipboard-list" aria-hidden="true"></i> <span data-i18n="self_test"></span></a></li>
+        <li><a href="links.html"><i class="fas fa-link" aria-hidden="true"></i> <span data-i18n="useful_links"></span></a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> <span data-i18n="contact"></span></a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="container" id="hovedinnhold">
+
+    <section class="card" aria-labelledby="faq-heading">
+      <h1 id="faq-heading"><i class="fas fa-question-circle" aria-hidden="true"></i> <span data-i18n="faq_heading"></span></h1>
+      <p class="lead" data-i18n="faq_lead"></p>
     </section>
 
-    <section class="card faq-container">
+    <section class="card faq-container" aria-label="Spørsmål og svar om KI">
+
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span>Hva er KI og hvordan kan det brukes i studiene?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          <span data-i18n="faq_q1"></span>
+          <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
         </button>
-        <div class="faq-answer">
-          <p>Kunstig intelligens (KI) er datateknologi som kan utføre oppgaver som normalt krever menneskelig intelligens, som å svare på spørsmål, analysere data, og generere tekst. I studiene kan KI brukes til å hjelpe med oppgaveskriving, forskning, og læring, men det er viktig å bruke det ansvarlig og i tråd med akademiske retningslinjer.</p>
+        <div class="faq-answer" role="region">
+          <p data-i18n="faq_a1"></p>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span>Når bør jeg oppgi at jeg har brukt KI?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          <span data-i18n="faq_q2"></span>
+          <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
         </button>
-        <div class="faq-answer">
-          <p>Du bør alltid oppgi når KI har bidratt til arbeidet ditt. Dette gjelder uansett om du har brukt KI til å generere ideer, strukturere tekst, eller finne kilder. Åpenhet om bruk av KI er viktig for å opprettholde akademisk integritet.</p>
+        <div class="faq-answer" role="region">
+          <p data-i18n="faq_a2"></p>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span>Hvordan kan jeg bruke KI på en etisk måte?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          <span data-i18n="faq_q3"></span>
+          <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
         </button>
-        <div class="faq-answer">
-          <p>For å bruke KI etisk, bør du unngå å dele sensitiv eller personlig informasjon, alltid dobbeltsjekke informasjon fra KI, og ikke bruke KI til å jukse eller unngå egen innsats. Bruk KI som et verktøy for å støtte læring og kreativitet, ikke som en erstatning for egen tenkning.</p>
+        <div class="faq-answer" role="region">
+          <p data-i18n="faq_a3"></p>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span>Hva er 'hallusinasjoner' i KI?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          <span data-i18n="faq_q4"></span>
+          <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
         </button>
-        <div class="faq-answer">
-          <p>Hallusinasjoner i KI refererer til situasjoner der KI genererer informasjon som høres sannferdig ut, men som faktisk er feil eller oppdiktet. Dette kan skje fordi KI baserer svarene sine på mønstre i data den er trent på, og ikke alltid kan skille mellom fakta og fiksjon. Det er derfor viktig å alltid dobbeltsjekke informasjon fra KI.</p>
+        <div class="faq-answer" role="region">
+          <p data-i18n="faq_a4"></p>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span>Hvordan kan jeg dobbeltsjekke informasjon fra KI?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          <span data-i18n="faq_q5"></span>
+          <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
         </button>
-        <div class="faq-answer">
-          <p>For å dobbeltsjekke informasjon fra KI, bør du sammenligne med pålitelige kilder, som fagbøker, vitenskapelige artikler, eller anerkjente nettsteder. Bruk også kildekritikk for å vurdere om informasjonen er troverdig og oppdatert.</p>
+        <div class="faq-answer" role="region">
+          <p data-i18n="faq_a5"></p>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span>Hva er 'prompt engineering'?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          <span data-i18n="faq_q6"></span>
+          <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
         </button>
-        <div class="faq-answer">
-          <p>Prompt engineering er teknikken for å formulere spørsmål eller instruksjoner (prompts) på en måte som får KI til å gi best mulig svar. Dette kan innebære å være spesifikk, tydelig, og strukturert i hvordan du stiller spørsmål eller gir oppdrag til KI.</p>
+        <div class="faq-answer" role="region">
+          <p data-i18n="faq_a6"></p>
         </div>
       </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          <span data-i18n="faq_q7"></span>
+          <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
+        </button>
+        <div class="faq-answer" role="region">
+          <p data-i18n="faq_a7"></p>
+        </div>
+      </div>
+
     </section>
   </main>
 
   <footer class="footer">
-    <p>Laget for studenter og ansatte — Gruppe 5 — Praktisk prosjektarbeid — Vår 2026</p>
+    <p data-i18n="footer_text"></p>
   </footer>
 
   <script>
@@ -151,25 +161,19 @@
       const faqItem = button.parentElement;
       const answer = faqItem.querySelector('.faq-answer');
       const icon = button.querySelector('.faq-icon');
-
-      if (answer.classList.contains('active')) {
-        answer.classList.remove('active');
-        icon.classList.remove('open');
-      } else {
-        // Close all other FAQ items
-        document.querySelectorAll('.faq-answer').forEach(item => {
-          item.classList.remove('active');
-        });
-        document.querySelectorAll('.faq-icon').forEach(item => {
-          item.classList.remove('open');
-        });
-
-        // Open the clicked FAQ item
+      const isOpen = answer.classList.contains('active');
+      document.querySelectorAll('.faq-answer').forEach(item => item.classList.remove('active'));
+      document.querySelectorAll('.faq-icon').forEach(item => item.classList.remove('open'));
+      document.querySelectorAll('.faq-question').forEach(btn => btn.setAttribute('aria-expanded', 'false'));
+      if (!isOpen) {
         answer.classList.add('active');
         icon.classList.add('open');
+        button.setAttribute('aria-expanded', 'true');
       }
     }
   </script>
-   <script src="app.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18next@22.4.10/i18next.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.2.1/i18nextHttpBackend.min.js"></script>
+  <script src="app.js?v=2" defer></script>
 </body>
 </html>
