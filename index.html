@@ -3,190 +3,134 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI Guidebook</title>
+  <title data-i18n="brand_title"></title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 </head>
 <body>
-  <!-- Skip to content for UU. -->
-  <a class="skip-link" href="#main-content">Hopp til hovedinnhold</a>
+
+  <a href="#hovedinnhold" class="skip-link" data-i18n="skip_link"></a>
+
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 
   <header class="topbar">
     <div class="brand">
-      <span class="brand-title">AI Guidebook</span>
+      <a href="index.html" aria-hidden="true" tabindex="-1">
+        <span class="brand-title" data-i18n="brand_title"></span>
+      </a>
     </div>
     <nav class="nav" aria-label="Hovedmeny">
-      <button class="menu-toggle" aria-label="Åpne meny" id="menuToggle" aria-expanded="false">☰</button>
-      <ul id="menu"> 
-        <li><a href="contact.html"><i class="fas fa-envelope"></i> Kontakt</a></li>
-        <li><a href="faq.html" aria-current="page"><i class="fas fa-question-circle"></i> FAQ</a></li>
-        <li><a href="tips.html"><i class="fas fa-lightbulb"></i> Praktiske tips</a></li>
-        <li><a href="quiz.html"><i class="fas fa-clipboard-list"></i> Test deg selv</a></li>
-        <li><a href="links.html"><i class="fas fa-link"></i> Nyttige lenker</a></li>
+      <ul class="nav-desktop" role="list">
+        <li><a href="index.html" class="nav-link active" aria-current="page"><i class="fas fa-home" aria-hidden="true"></i> <span data-i18n="home"></span></a></li>
+        <li><a href="faq.html" class="nav-link"><i class="fas fa-question-circle" aria-hidden="true"></i> <span data-i18n="faq"></span></a></li>
+        <li><a href="tips.html" class="nav-link"><i class="fas fa-lightbulb" aria-hidden="true"></i> <span data-i18n="ai_questions"></span></a></li>
+        <li><a href="quiz.html" class="nav-link"><i class="fas fa-clipboard-list" aria-hidden="true"></i> <span data-i18n="self_test"></span></a></li>
+        <li><a href="links.html" class="nav-link"><i class="fas fa-link" aria-hidden="true"></i> <span data-i18n="useful_links"></span></a></li>
+        <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope" aria-hidden="true"></i> <span data-i18n="contact"></span></a></li>
       </ul>
-      </ul>
+      <button class="menu-toggle" aria-label="Åpne navigasjonsmeny" aria-expanded="false" aria-controls="sideMenu" id="menuToggle">
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+      </button>
     </nav>
+    <div class="language-selector">
+      <button onclick="changeLanguage('no')" aria-label="Norsk" class="lang-btn lang-no" title="Norsk">NO</button>
+      <button onclick="changeLanguage('en')" aria-label="English" class="lang-btn lang-en" title="English">EN</button>
+    </div>
   </header>
 
-  <main id="main-content" class="container">
-    <!-- Helte-seksjon -->
-    <section class="hero card">
-      <h1>Klar for å bruke AI på en smart og trygg måte?<br></h1>
-      <p class="lead">
-        Lær hvordan du kan bruke AI som støtte i studiene – uten å bryte reglene.<br>
-        <strong>Eksempel:</strong> Slik kan AI hjelpe deg med å strukturere oppgaver eller finne kilder.
-      </p>
+  <aside class="side-menu" id="sideMenu" aria-hidden="true" aria-label="Mobilnavigasjon">
+    <div class="side-menu-header">
+      <span class="side-menu-title" data-i18n="menu"></span>
+      <button class="side-menu-close" id="menuClose" aria-label="Lukk navigasjonsmeny">✕</button>
+    </div>
+    <nav aria-label="Mobilmeny">
+      <ul role="list">
+        <li><a href="index.html" class="active" aria-current="page"><i class="fas fa-home" aria-hidden="true"></i> <span data-i18n="home"></span></a></li>
+        <li><a href="faq.html"><i class="fas fa-question-circle" aria-hidden="true"></i> <span data-i18n="faq"></span></a></li>
+        <li><a href="tips.html"><i class="fas fa-lightbulb" aria-hidden="true"></i> <span data-i18n="ai_questions"></span></a></li>
+        <li><a href="quiz.html"><i class="fas fa-clipboard-list" aria-hidden="true"></i> <span data-i18n="self_test"></span></a></li>
+        <li><a href="links.html"><i class="fas fa-link" aria-hidden="true"></i> <span data-i18n="useful_links"></span></a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> <span data-i18n="contact"></span></a></li>
+      </ul>
+    </nav>
+  </aside>
 
-      <div class="why-matters">
-        <h3><i class="fas fa-info-circle"></i> Hvorfor dette er viktig</h3>
-        <p>
-          AI kan spare deg for tid og hjelpe deg å lære bedre – men det er viktig å bruke det riktig.
-          Her får du konkrete tips og eksempler som passer for deg som student/ansatt.
-        </p>
+  <main class="container" id="hovedinnhold">
+
+    <section class="card hero" aria-labelledby="hero-heading">
+      <h1 id="hero-heading" data-i18n="hero_heading"></h1>
+      <p class="lead" data-i18n="hero_lead"></p>
+      <div class="why-matters" role="note" aria-label="Viktig informasjon">
+        <h2><i class="fas fa-info-circle" aria-hidden="true"></i> <span data-i18n="why_matters"></span></h2>
+        <p data-i18n="why_matters_text"></p>
       </div>
-      <!--Søkefunksjon-->
-      <section class="why-matters">
-  <h2>Søk i AI Guidebook</h2>
-  <p class="lead">Skriv inn et tema (for eksempel "plagiat", "eksamen", "personvern", "prompt") for å finne relevant innhold.</p>
-
-  <div class="search-bar">
-    <label for="siteSearch" class="visually-hidden">Søk i innholdet</label>
-    <input
-      type="search"
-      id="siteSearch"
-      placeholder="Søk etter tema..."
-    />
-  </div>
-  <p id="search-status" class="small" aria-live="polite"></p>
-</section>
-
-      <!-- Rollevelger -->
-     <!-- <div class="role-selector" aria-labelledby="role-title">
-        <h3 id="role-title">Jeg er:</h3>
-        <div class="role-options">
-          <button class="role-btn active" data-role="student" aria-pressed="true">Student</button>
-        <button class="role-btn" data-role="staff" aria-pressed="false">Fagpersonale</button>
-        </div>
-      </div>
-
-      <div class="hero-actions">
-        <a class="btn" href="quiz.html"><i class="fas fa-clipboard-list"></i> Test din kunnskap</a>
-      </div>
-
-      <p class="small">
-        AI Guidebook supplerer lokale retningslinjer. Ved tvil: sjekk emnebeskrivelse og regelverk ved din institusjon.
-      </p>
-    </section>
-  -->
-    <!-- Studentseksjon -->
-    <section class="card content-student" data-role="student">
-      <h2>For studenter</h2>
-      <p>
-        Få tydelige, praktiske råd om ansvarlig AI-bruk i studier.
-        Lær hvordan du kan bruke AI som støtte uten å bryte akademiske regler.
-      </p>
-
-      <!-- Interaktiv veiviser -->
-      <div class="ai-guide-container">
-        <h3>Veiviser for trygg og ansvarlig bruk av AI</h3>
-        <p>Følg denne veiviseren for å vurdere om og hvordan du kan bruke AI i studiene:</p>
-
-        <div class="guide-step" id="step1">
-          <p>Vurderer du å bruke AI i studiene?</p>
-          <button class="guide-btn" onclick="nextStep('yes', 'step1')">Ja</button>
-          <button class="guide-btn" onclick="nextStep('no', 'step1')">Nei</button>
-        </div>
-
-        <div class="guide-step" id="step2" style="display: none;">
-          <p>Skal resultatet leveres til vurdering?</p>
-          <button class="guide-btn" onclick="nextStep('yes', 'step2')">Ja</button>
-          <button class="guide-btn" onclick="nextStep('no', 'step2')">Nei</button>
-        </div>
-
-        <div class="guide-step" id="step3" style="display: none;">
-          <p>Hva skal AI brukes til?</p>
-          <button class="guide-btn" onclick="nextStep('allowed', 'step3')">Som støtte til læring</button>
-          <button class="guide-btn" onclick="nextStep('not_allowed', 'step3')">For å levere innhold uten egen bearbeidelse</button>
-        </div>
-
-        <div class="guide-step" id="step4" style="display: none;">
-          <p>Har du kontrollert om AI-bruk er tillatt i dette emnet?</p>
-          <button class="guide-btn" onclick="nextStep('yes', 'step4')">Ja</button>
-          <button class="guide-btn" onclick="nextStep('no', 'step4')">Nei</button>
-        </div>
-
-        <div class="guide-step" id="step5" style="display: none;">
-          <p>Inneholder innholdet personopplysninger eller sensitiv informasjon?</p>
-          <button class="guide-btn" onclick="nextStep('yes', 'step5')">Ja</button>
-          <button class="guide-btn" onclick="nextStep('no', 'step5')">Nei</button>
-        </div>
-
-        <div class="guide-step" id="step6" style="display: none;">
-          <p>Har du oppgitt bruk av AI der det er påkrevd?</p>
-          <button class="guide-btn" onclick="nextStep('yes', 'step6')">Ja</button>
-          <button class="guide-btn" onclick="nextStep('no', 'step6')">Nei</button>
-        </div>
-
-        <!-- Resultat -->
-        <div class="guide-result" id="result" style="display: none;">
-          <p id="result-text"></p>
-          <button class="guide-btn" onclick="resetGuide()">Tilbake til start</button>
-        </div>
-      </div>
+      <p class="small" data-i18n="disclaimer"></p>
     </section>
 
-    <!-- Fagpersonale-seksjon -->
-    <!--<section class="card content-staff" data-role="staff" style="display: none;">
-      <h2>For fagpersonale</h2>
-      <p>
-        Veiledning for lærere, sensorer, studieadministrasjon og universitetet –
-        om hvordan håndtere AI i undervisning, vurdering og policy.
-      </p>
-      <div class="grid">
-        <a href="teaching-tips.html" class="tile">
-          <h3><i class="fas fa-chalkboard-teacher"></i> Undervisningstips</h3>
-          <p>Hvordan integrere AI i emner og oppgaver.</p>
-        </a>
-        <a href="vurderingsretningslinjer.html" class="tile">
-          <h3><i class="fas fa-gavel"></i> Vurderingsretningslinjer</h3>
-          <p>Håndtering av AI-bruk i eksamen og oppgaver.</p>
-        </a>
-        <a href="PolicyMaler.html" class="tile">
-          <h3><i class="fas fa-university"></i> Policy og maler</h3>
-          <p>Ferdige maler for lokale retningslinjer.</p>
-        </a>
-      </div>
-    </section>
-  
--->
-    <!-- Felles ressurser (alltid synlig) -->
-    <section class="card" data-role="student staff">
-      <h2>Felles ressurser</h2>
-      <p>
-        Her finner alle brukerne våre felles retningslinjer, nyheter om AI i utdanning,
-        og lenker til eksterne ressurser.
-      </p>
+    <section class="card" aria-labelledby="kom-i-gang-heading">
+      <h2 id="kom-i-gang-heading" data-i18n="get_started"></h2>
+      <p class="lead" data-i18n="get_started_lead"></p>
       <div class="grid">
         <a href="faq.html" class="tile">
-          <h3><i class="fas fa-question-circle"></i> FAQ</h3>
-          <p>Svar på vanlige spørsmål for alle målgrupper.</p>
+          <h3><i class="fas fa-question-circle" aria-hidden="true"></i> <span data-i18n="step_1"></span></h3>
+          <p data-i18n="step_1_text"></p>
         </a>
         <a href="tips.html" class="tile">
-          <h3><i class="fas fa-lightbulb"></i> Praktiske tips</h3>
-          <p>Konkrete råd for ansvarlig AI-bruk.</p>
+          <h3><i class="fas fa-lightbulb" aria-hidden="true"></i> <span data-i18n="step_2"></span></h3>
+          <p data-i18n="step_2_text"></p>
         </a>
-        <a href="links.html" class="tile">
-          <h3><i class="fas fa-link"></i> Nyttige lenker</h3>
-          <p>Eksterne ressurser og verktøy.</p>
+        <a href="quiz.html" class="tile">
+          <h3><i class="fas fa-clipboard-list" aria-hidden="true"></i> <span data-i18n="step_3"></span></h3>
+          <p data-i18n="step_3_text"></p>
         </a>
       </div>
     </section>
+
+    <section class="card" aria-labelledby="sok-heading">
+      <h2 id="sok-heading" data-i18n="search_heading"></h2>
+      <p class="lead" data-i18n="search_lead"></p>
+      <div class="search-bar">
+        <label for="globalSearch" class="visually-hidden" data-i18n="search_label"></label>
+        <input
+          type="search"
+          id="globalSearch"
+          placeholder=""
+          autocomplete="off"
+          aria-describedby="searchHint"
+          data-i18n="[placeholder]search_placeholder"
+        />
+        <span id="searchHint" class="visually-hidden" data-i18n="search_hint"></span>
+      </div>
+      <ul id="searchResults" class="search-results" aria-live="polite" aria-label="Søkeresultater"></ul>
+    </section>
+
+    <section class="card" aria-labelledby="utforsk-heading">
+      <h2 id="utforsk-heading" data-i18n="explore_heading"></h2>
+      <nav aria-label="Snarveier">
+        <div class="link-row">
+          <a href="faq.html" class="link-pill"><i class="fas fa-question-circle" aria-hidden="true"></i> <span data-i18n="faq"></span></a>
+          <a href="tips.html" class="link-pill"><i class="fas fa-lightbulb" aria-hidden="true"></i> <span data-i18n="ai_questions"></span></a>
+          <a href="quiz.html" class="link-pill"><i class="fas fa-clipboard-list" aria-hidden="true"></i> <span data-i18n="self_test"></span></a>
+          <a href="links.html" class="link-pill"><i class="fas fa-link" aria-hidden="true"></i> <span data-i18n="useful_links"></span></a>
+          <a href="contact.html" class="link-pill"><i class="fas fa-envelope" aria-hidden="true"></i> <span data-i18n="contact"></span></a>
+        </div>
+      </nav>
+    </section>
+
   </main>
 
   <footer class="footer">
-    <p>Utviklet av Gruppe 5 - Praktisk prosjektarbeid -Vår 2026</p>
+    <p data-i18n="footer_text"></p>
   </footer>
 
-  <script src="app.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/i18next@22.4.10/i18next.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.2.1/i18nextHttpBackend.min.js"></script>
+
+  <script src="app.js?v=2" defer></script>
 </body>
 </html>
