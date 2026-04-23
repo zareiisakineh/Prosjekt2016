@@ -3,281 +3,249 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kontakt oss - AI Guidebook</title>
+  <title data-i18n="contact_page_title"></title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
   <style>
-    .contact-container {
-      margin: 2rem 0;
-    }
-
-    .contact-method {
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
       margin-bottom: 2rem;
+    }
+    .contact-card {
       border: 1px solid var(--border-color);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .method-header {
-      background-color: var(--primary-light);
-      padding: 1rem;
-      cursor: pointer;
+      border-radius: 10px;
+      padding: 1.2rem 1rem;
+      background: white;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
+      flex-direction: column;
+      gap: 0.4rem;
     }
-
-    .method-header:hover {
-      background-color: var(--primary-color);
-      color: white;
+    .contact-card .card-icon {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 0.3rem;
     }
-
-    .method-content {
-      display: none;
-      padding: 1rem;
-      background-color: var(--card-bg);
+    .contact-card .card-label {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--primary-color);
     }
-
-    .method-content.active {
-      display: block;
+    .contact-card .card-value {
+      font-size: 0.93rem;
+      color: var(--text-light);
     }
-
-    .contact-info {
-      margin: 1rem 0;
-    }
-
-    .contact-info p {
-      margin: 0.75rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .contact-info a {
+    .contact-card a {
       color: var(--primary-color);
       text-decoration: none;
+      word-break: break-all;
     }
+    .contact-card a:hover { text-decoration: underline; }
 
-    .contact-form {
-      margin-top: 1rem;
-    }
-
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
+    .contact-form { margin-top: 0.5rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 600; font-size: 0.95rem; }
     .form-group input,
     .form-group textarea,
     .form-group select {
-      width: 100%;
-      padding: 0.75rem;
+      width: 100%; padding: 0.75rem;
       border: 1px solid var(--border-color);
-      border-radius: 4px;
-      font-size: 1rem;
+      border-radius: 6px; font-size: 1rem; font-family: inherit;
+      box-sizing: border-box;
     }
-
-    .form-group textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
+    .form-group textarea { min-height: 130px; resize: vertical; }
     .submit-button {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: background-color 0.3s;
+      background-color: var(--primary-color); color: white;
+      border: none; padding: 0.8rem 1.8rem; border-radius: 6px;
+      cursor: pointer; font-size: 1rem; font-weight: 600;
+      font-family: inherit; transition: background-color 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
     }
-
-    .submit-button:hover {
-      background-color: var(--secondary-color);
-    }
-
-    .tip-icon {
-      transition: transform 0.3s;
-    }
-
-    .tip-icon.open {
-      transform: rotate(180deg);
-    }
-
+    .submit-button:hover { background-color: var(--secondary-color); }
     .success-message {
-      display: none;
-      padding: 1rem;
-      background-color: #d4edda;
-      color: #28a745;
-      border-radius: 4px;
-      margin-top: 1rem;
+      display: none; padding: 1rem;
+      background-color: #d4edda; color: #155724;
+      border-radius: 6px; margin-top: 1rem;
+      display: none; align-items: center; gap: 0.5rem;
     }
+
+    .map-section { margin-top: 1.5rem; }
+    .map-section h2 { font-size: 1.1rem; margin-bottom: 0.75rem; }
+    .map-address {
+      display: flex; flex-wrap: wrap; gap: 1.5rem;
+      margin-bottom: 1rem; font-size: 0.93rem; color: var(--text-light);
+    }
+    .map-address span { display: flex; align-items: center; gap: 0.4rem; }
+    .map-address i { color: var(--primary-color); }
   </style>
 </head>
-
 <body>
+
+  <a href="#hovedinnhold" class="skip-link" data-i18n="skip_link">Hopp til hovedinnhold</a>
+
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
   <header class="topbar">
     <div class="brand">
-      <span class="brand-title">AI Guidebook</span>
+      <a href="index.html" aria-label="KI-veileder for studenter – gå til forsiden">
+        <span class="brand-title" data-i18n="brand_title"></span>
+      </a>
     </div>
-    <nav class="nav">
-      <button class="menu-toggle" id="menuToggle">☰</button>
-      <ul id="menu">
-        <li><a href="index.html"><i class="fas fa-home"></i> Hjem</a></li>
+    <nav class="nav" aria-label="Hovedmeny">
+      <ul class="nav-desktop" role="list">
+        <li><a href="index.html" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i> <span data-i18n="home"></span></a></li>
+        <li><a href="faq.html" class="nav-link"><i class="fas fa-question-circle" aria-hidden="true"></i> <span data-i18n="faq"></span></a></li>
+        <li><a href="tips.html" class="nav-link"><i class="fas fa-lightbulb" aria-hidden="true"></i> <span data-i18n="ai_questions"></span></a></li>
+        <li><a href="quiz.html" class="nav-link"><i class="fas fa-clipboard-list" aria-hidden="true"></i> <span data-i18n="self_test"></span></a></li>
+        <li><a href="links.html" class="nav-link"><i class="fas fa-link" aria-hidden="true"></i> <span data-i18n="useful_links"></span></a></li>
+        <li><a href="contact.html" class="nav-link active" aria-current="page"><i class="fas fa-envelope" aria-hidden="true"></i> <span data-i18n="contact"></span></a></li>
       </ul>
+      <button class="menu-toggle" aria-label="Åpne navigasjonsmeny" aria-expanded="false" aria-controls="sideMenu" id="menuToggle">
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+      </button>
     </nav>
+    <div class="language-selector">
+      <button onclick="changeLanguage('no')" aria-label="Norsk" class="lang-btn lang-no" title="Norsk">NO</button>
+      <button onclick="changeLanguage('en')" aria-label="English" class="lang-btn lang-en" title="English">EN</button>
+    </div>
   </header>
 
+  <aside class="side-menu" id="sideMenu" aria-hidden="true" aria-label="Mobilnavigasjon">
+    <div class="side-menu-header">
+      <span class="side-menu-title" data-i18n="menu"></span>
+      <button class="side-menu-close" id="menuClose" aria-label="Lukk navigasjonsmeny">✕</button>
+    </div>
+    <nav aria-label="Mobilmeny">
+      <ul role="list">
+        <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> <span data-i18n="home"></span></a></li>
+        <li><a href="faq.html"><i class="fas fa-question-circle" aria-hidden="true"></i> <span data-i18n="faq"></span></a></li>
+        <li><a href="tips.html"><i class="fas fa-lightbulb" aria-hidden="true"></i> <span data-i18n="ai_questions"></span></a></li>
+        <li><a href="quiz.html"><i class="fas fa-clipboard-list" aria-hidden="true"></i> <span data-i18n="self_test"></span></a></li>
+        <li><a href="links.html"><i class="fas fa-link" aria-hidden="true"></i> <span data-i18n="useful_links"></span></a></li>
+        <li><a href="contact.html" class="active" aria-current="page"><i class="fas fa-envelope" aria-hidden="true"></i> <span data-i18n="contact"></span></a></li>
+      </ul>
+    </nav>
+  </aside>
+
   <main class="container">
-    <section class="hero card">
-      <h1><i class="fas fa-envelope"></i> Kontakt oss</h1>
-      <p class="lead">
-        Har du spørsmål om AI Guidebook, trenger du hjelp eller ønsker du å gi tilbakemelding?
-        Vi er her for å hjelpe!
-      </p>
-    </section>
 
-    <section class="card contact-container">
-      <div class="contact-method">
-        <div class="method-header" onclick="toggleMethod(this)">
-          <span><i class="fas fa-envelope"></i> E-post</span>
-          <i class="fas fa-chevron-down tip-icon"></i>
-        </div>
-        <div class="method-content">
-          <div class="contact-info">
-            <p><i class="fas fa-envelope"></i> <a href="mailto:ai-guidebook@institusjon.no">ai-guidebook@institusjon.no</a></p>
-            <p><i class="fas fa-clock"></i> Svarstid: 1-2 virkedager</p>
-          </div>
-        </div>
-      </div>
+    <section class="card">
+      <h1><i class="fas fa-envelope"></i> <span data-i18n="contact_heading"></span></h1>
+      <p class="lead" data-i18n="contact_lead"></p>
 
-      <div class="contact-method">
-        <div class="method-header" onclick="toggleMethod(this)">
-          <span><i class="fas fa-phone"></i> Telefon</span>
-          <i class="fas fa-chevron-down tip-icon"></i>
+      <!-- Kontaktinfo-kort -->
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="card-icon"><i class="fas fa-envelope"></i></div>
+          <div class="card-label" data-i18n="contact_email_label"></div>
+          <div class="card-value"><a href="mailto:ki-veileder@usn.no">ki-veileder@usn.no</a></div>
+          <div class="card-value" data-i18n="contact_email_note"></div>
         </div>
-        <div class="method-content">
-          <div class="contact-info">
-            <p><i class="fas fa-phone"></i> +47 12 34 56 78</p>
-            <p><i class="fas fa-clock"></i> Åpningstider: Mandag-Fredag 09:00-15:00</p>
-          </div>
+        <div class="contact-card">
+          <div class="card-icon"><i class="fas fa-phone"></i></div>
+          <div class="card-label" data-i18n="contact_phone_label"></div>
+          <div class="card-value"><a href="tel:+4731008000">+47 31 00 80 00</a></div>
+          <div class="card-value" data-i18n="contact_phone_note"></div>
+        </div>
+        <div class="contact-card">
+          <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="card-label" data-i18n="contact_address_label"></div>
+          <div class="card-value" data-i18n="contact_address_campus"></div>
+          <div class="card-value" data-i18n="contact_address_street"></div>
         </div>
       </div>
 
-      <div class="contact-method">
-        <div class="method-header" onclick="toggleMethod(this)">
-          <span><i class="fas fa-comment-dots"></i> Kontakt-skjema</span>
-          <i class="fas fa-chevron-down tip-icon"></i>
+      <!-- Kontaktskjema -->
+      <h2 style="margin-bottom:1rem;"><i class="fas fa-comment-dots"></i> <span data-i18n="contact_form_heading"></span></h2>
+      <form id="contactForm" class="contact-form">
+        <div class="form-group">
+          <label for="name" data-i18n="contact_name_label"></label>
+          <input type="text" id="name" name="name" placeholder="" data-i18n="[placeholder]contact_name_placeholder" required />
         </div>
-        <div class="method-content">
-          <form id="contactForm" class="contact-form">
-            <div class="form-group">
-              <label for="name">Navn:</label>
-              <input type="text" id="name" name="name" required>
-            </div>
-
-            <div class="form-group">
-              <label for="email">E-post:</label>
-              <input type="email" id="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-              <label for="subject">Emne:</label>
-              <select id="subject" name="subject" required>
-                <option value="">Velg emne</option>
-                <option value="spørsmål">Spørsmål om AI Guidebook</option>
-                <option value="hjelp">Trenger hjelp</option>
-                <option value="tilbakemelding">Tilbakemelding</option>
-                <option value="annet">Annet</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="message">Melding:</label>
-              <textarea id="message" name="message" required></textarea>
-            </div>
-
-            <button type="submit" class="submit-button">Send melding</button>
-          </form>
-          <div id="successMessage" class="success-message">
-            <i class="fas fa-check-circle"></i> Takk for din melding! Vi vil svare deg så snart som mulig.
-          </div>
+        <div class="form-group">
+          <label for="email" data-i18n="contact_email_field_label"></label>
+          <input type="email" id="email" name="email" placeholder="" data-i18n="[placeholder]contact_email_placeholder" required />
         </div>
-      </div>
-
-      <div class="contact-method">
-        <div class="method-header" onclick="toggleMethod(this)">
-          <span><i class="fas fa-map-marker-alt"></i> Besøk oss</span>
-          <i class="fas fa-chevron-down tip-icon"></i>
+        <div class="form-group">
+          <label for="subject" data-i18n="contact_subject_label"></label>
+          <select id="subject" name="subject" required>
+            <option value="" data-i18n="contact_subject_placeholder"></option>
+            <option value="spørsmål" data-i18n="contact_subject_question"></option>
+            <option value="hjelp" data-i18n="contact_subject_help"></option>
+            <option value="tilbakemelding" data-i18n="contact_subject_feedback"></option>
+            <option value="annet" data-i18n="contact_subject_other"></option>
+          </select>
         </div>
-        <div class="method-content">
-          <div class="contact-info">
-            <p><i class="fas fa-university"></i> Universitetet i Sørøst-Norge</p>
-            <p><i class="fas fa-map-marked-alt"></i> Campus Kongsberg, Kjølnes ring 56, 3611 Kongsberg</p>
-            <p><i class="fas fa-building"></i> Bygg A, 3. etasje, rom A305</p>
-            <p><i class="fas fa-clock"></i> Åpningstider: Mandag-Fredag 09:00-15:00</p>
-          </div>
-          <div style="margin-top: 1rem;">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2003.633694633393!2d9.65371131583252!3d59.67151998168263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4640e4d5a9d3d311%3A0x400f9a0968e8f!2sUniversity%20of%20South-Eastern%20Norway!5e0!3m2!1sen!2sno!4v1618700000000!5m2!1sen!2sno" width="100%" height="300" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
-          </div>
+        <div class="form-group">
+          <label for="message" data-i18n="contact_message_label"></label>
+          <textarea id="message" name="message" placeholder="" data-i18n="[placeholder]contact_message_placeholder" required></textarea>
         </div>
+        <p class="privacy-note" style="padding-bottom: 10px;"><i class="fas fa-exclamation-triangle"></i> <span data-i18n="contact_privacy_note"></span></p>
+        <button type="submit" class="submit-button">
+          <i class="fas fa-paper-plane"></i> <span data-i18n="contact_send_button"></span>
+        </button>
+      </form>
+      <div id="successMessage" class="success-message">
+        <i class="fas fa-check-circle"></i> <span data-i18n="contact_success_message"></span>
       </div>
     </section>
+
+    <!-- Kart -->
+    <section class="card">
+      <div class="map-section">
+        <h2><i class="fas fa-map-marker-alt"></i> <span data-i18n="contact_map_heading"></span></h2>
+        <div class="map-address">
+          <span><i class="fas fa-university"></i> <span data-i18n="contact_map_university"></span></span>
+          <span><i class="fas fa-road"></i> <span data-i18n="contact_map_street"></span></span>
+          <span><i class="fas fa-clock"></i> <span data-i18n="contact_map_hours"></span></span>
+        </div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2004.0!2d9.0596141!3d59.4088932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4647494bb691771f%3A0xd599b38e9eb4b4e3!2sUniversity%20of%20South-Eastern%20Norway!5e0!3m2!1sno!2sno!4v1700000000000!5m2!1sno!2sno"
+          width="100%" height="320"
+          style="border:0; border-radius: 8px;"
+          allowfullscreen=""
+          loading="lazy"
+          title="Kart over USN Campus Bø">
+        </iframe>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
-    <p>Laget for studenter og ansatte — Gruppe 5 — Praktisk prosjektarbeid — Vår 2026</p>
+    <p data-i18n="footer_text"></p>
   </footer>
 
   <script>
-    function toggleMethod(header) {
-      const method = header.parentElement;
-      const content = method.querySelector('.method-content');
-      const icon = header.querySelector('.tip-icon');
-
-      if (content.classList.contains('active')) {
-        content.classList.remove('active');
-        icon.classList.remove('open');
-      } else {
-        // Close all other methods
-        document.querySelectorAll('.method-content').forEach(item => {
-          item.classList.remove('active');
-        });
-        document.querySelectorAll('.tip-icon').forEach(item => {
-          item.classList.remove('open');
-        });
-
-        // Open the clicked method
-        content.classList.add('active');
-        icon.classList.add('open');
-      }
-    }
-
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
-
-      // Simulate form submission
+      const btn = this.querySelector('.submit-button');
+      const loadingText = window.i18next ? window.i18next.t('contact_sending') : 'Sender...';
+      btn.textContent = loadingText;
+      btn.disabled = true;
       setTimeout(function() {
         document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('successMessage').style.display = 'block';
-
-        // Reset form after 5 seconds
+        const msg = document.getElementById('successMessage');
+        msg.style.display = 'flex';
         setTimeout(function() {
           document.getElementById('contactForm').reset();
           document.getElementById('contactForm').style.display = 'block';
-          document.getElementById('successMessage').style.display = 'none';
+          msg.style.display = 'none';
+          const sendLabel = window.i18next ? window.i18next.t('contact_send_button') : 'Send melding';
+          btn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + sendLabel;
+          btn.disabled = false;
         }, 5000);
       }, 1000);
     });
   </script>
-   <script src="app.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18next@22.4.10/i18next.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.2.1/i18nextHttpBackend.min.js"></script>
+  <script src="app.js?v=2" defer></script>
 </body>
 </html>
